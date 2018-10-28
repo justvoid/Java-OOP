@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>352</y>
+      <w>312</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>net.ukr.just_void::Circle
+--
+-apex = new Point[2]: Point[]
+-r = 0: double
+--
++Circle(): ctor
++Circle(Point[] apex): ctor
++Circle(String name, Point[] apex): ctor
++Circle(Point apex, int r): ctor
++Circle(String name, Point apex, int r): ctor
++Circle(String name, String color, Point[] apex): ctor
++Circle(String name, String color, Point apex, double r): ctor
++getApex(): Point[]
++setApex(Point[] apex): void
++getR(): double
++setR(double r): void
++calculateArea(): double
++calculatePerimeter(): double
+-calculateR(): void
+-calculateApex1(): void
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>272</x>
+      <y>0</y>
+      <w>208</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>/net.ukr.just_void::Shape/
+--
+-name: String
+-apex: Point[]
+-color = "черный": String
+--
++Shape(): ctor
++Shape(String name): ctor
++Shape(String name, String color): ctor
++getName(): String
++setName(String name): void
++getApex(): Point[]
++setApex(Point[] apex): void
++getColor(): String
++setColor(String color): void
++calculateArea(): double
++calculatePerimeter(): double
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>472</x>
+      <y>688</y>
+      <w>232</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>net.ukr.just_void::Board
+--
+-content = new Shape[4]: Shape[]
+--
++Board(): ctor
++Board(Shape[] content): ctor
++getContent(): Shape[]
++setContent(Shape[] content): void
++addToBoard(Shape shape): void
++addToBoard(Shape shape, int index): void
++removeFromBoard(): void
++removeFromBoard(Shape a): void
++removeFromBoard(int index): void
++listBoardContent(): double
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>416</x>
+      <y>360</y>
+      <w>280</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>net.ukr.just_void::Square
+--
+-apex = new Point[4]: Point[]
+--
++Square(): ctor
++Square(Point[] apex): ctor
++Square(String name, Point[] apex): ctor
++Square(String name, String color, Point[] apex): ctor
++getApex(): Point[]
++setApex(Point[] apex): void
++calculateArea(): double
++calculatePerimeter(): double
+-calculateSideLenght(Point a, Point b): double
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>808</x>
+      <y>360</y>
+      <w>280</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>net.ukr.just_void::Triangle
+--
+-apex = new Point[3]: Point[]
+--
++Triangle(): ctor
++Triangle(Point[] apex): ctor
++Triangle(String name, Point[] apex): ctor
++Triangle(String name, String color, Point[] apex): ctor
++getApex(): Point[]
++setApex(Point[] apex): void
++calculateArea(): double
++calculatePerimeter(): double
+-calculateSideLenght(Point a, Point b): double
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>704</x>
+      <y>24</y>
+      <w>168</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>net.ukr.just_void::Point
+--
+-x: double
+-y: double
+--
++Point(double x, double y): ctor
++Point(): ctor
++getX(): double
++setX(double x): void
++getY(): double
++setY(double y): void
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>152</x>
+      <y>224</y>
+      <w>224</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>260.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>368</x>
+      <y>224</y>
+      <w>216</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;250.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>376</x>
+      <y>224</y>
+      <w>592</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;720.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>152</x>
+      <y>184</y>
+      <w>648</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>790.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>184</y>
+      <w>248</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>290.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>184</y>
+      <w>184</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;210.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>136</x>
+      <y>632</y>
+      <w>464</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;560.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>544</y>
+      <w>24</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>544</y>
+      <w>392</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>470.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+</diagram>
