@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Main {
 
 	public static void main(String[] args) {
-		Group gr = new Group("Gr401"); //группа
+		Group gr = new Group("Gr401"); 
 
 		Student martinJ = new Student("Jake", "Martin", Sex.Male, 22, 4, 92.5);
 		Student reedD = new Student("Derek", "Reed", Sex.Male, 22, 5, 96);
