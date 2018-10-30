@@ -24,11 +24,9 @@ public class Group {
 		for (int i = 0; i < studentList.length; i++) {
 			if (studentList[i] == null) {
 				emptyElementIndex = (emptyElementIndex == -1) ? i : emptyElementIndex;
-			} else {
-				if (studentList[i].equals(student)) {
-					throw new DuplicateStudentException("The student " + student.getSurname() + " " + student.getName()
-							+ " is already present in group " + name + "!");
-				}
+			} else if (studentList[i].equals(student)) {
+				throw new DuplicateStudentException("The student " + student.getSurname() + " " + student.getName()
+						+ " is already present in group " + name + "!");
 			}
 
 		}
@@ -69,7 +67,7 @@ public class Group {
 		}
 	}
 
-	public void groupSortNull() {
+	private void groupSortNull() {
 		for (int i = 0; i < studentList.length; i++) {
 			if (studentList[i] == null) {
 				for (int j = studentList.length - 1; j > i; j--) {
@@ -83,7 +81,7 @@ public class Group {
 		}
 	}
 
-	public void groupSort() {
+	private void groupSort() {
 		groupSortNull();
 		boolean madeChanges;
 		do {
