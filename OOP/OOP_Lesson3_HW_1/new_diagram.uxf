@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>850</x>
+      <y>140</y>
+      <w>170</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;include&gt;&gt;</panel_attributes>
+    <additional_attributes>150.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>0</y>
+      <w>400</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>net.ukr.just_void::Human
+--
+-name: String
+-surname: String
+-sex: Sex
+-age: int
+--
++Human(String name, String surname, Sex sex, int age): ctor
++Human(): ctor
++getName(): String
++setName(String name): void
++getSurname(): String
++setSurname(String surname): void
++getSex(): Sex
++setSex(Sex sex): void
++getAge(): int
++setAge(int age): void
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>590</x>
+      <y>30</y>
+      <w>270</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>net.ukr.just_void::Group
+--
+-name: String
+-studentList = new Student[10]: Student[]
+--
++Group(): ctor
++Group(String name): ctor
++getStudentList(): Student[]
++addStudent(Student student): void
++deleteStudent(Student student): void
++deleteStudent(int index): void
++groupSortNull(): void
++groupSort(): void
++findStudent(String surname): int[]
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>190</x>
+      <y>400</y>
+      <w>600</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>net.ukr.just_void::Student
+--
+-year: int
+-averageGrade: double
+--
++Student(): ctor
++Student(String name, String surname, Sex sex, int age): ctor
++Student(String name, String surname, Sex sex, int age, int year, double averageGrade): ctor
++getYear(): int
++setYear(int year): void
++getAverageGrade(): double
++setAverageGrade(double averageGrade): void
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1000</x>
+      <y>370</y>
+      <w>330</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>net.ukr.just_void::DuplicateStudentException
+--
+-serialVersionUID = -412389557686271001L: long
+--
++DuplicateStudentException(): ctor
++DuplicateStudentException(String message): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1000</x>
+      <y>170</y>
+      <w>340</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>net.ukr.just_void::GroupFullException
+--
+-serialVersionUID = -3912143982580074606L: long
+--
++GroupFullException(): ctor
++GroupFullException(String s): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>850</x>
+      <y>160</y>
+      <w>170</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;include&gt;&gt;</panel_attributes>
+    <additional_attributes>150.0;270.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>130</y>
+      <w>120</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;270.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>300</y>
+      <w>230</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;210.0;100.0</additional_attributes>
+  </element>
+</diagram>
