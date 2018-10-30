@@ -20,21 +20,19 @@ public class Group {
 	}
 
 	public void addStudent(Student student) throws GroupFullException, DuplicateStudentException {
-		boolean studentExists = false;
 		int emptyElementIndex = -1;
 		for (int i = 0; i < studentList.length; i++) {
-
 			if (studentList[i] == null) {
 				emptyElementIndex = (emptyElementIndex == -1) ? i : emptyElementIndex;
 			} else {
-				studentExists = (studentList[i].equals(student)) || (studentExists);
+				if (studentList[i].equals(student)) {
+					throw new DuplicateStudentException("The student " + student.getSurname() + " " + student.getName()
+							+ " is already present in group " + name + "!");
+				}
 			}
-		}
-		if (studentExists) {
-			throw new DuplicateStudentException("The student " + student.getSurname() + " " + student.getName()
-					+ " is already present in group " + name + "!");
 
-		} else if (emptyElementIndex == -1) {
+		}
+		if (emptyElementIndex == -1) {
 			throw new GroupFullException("Can't add " + student.getSurname() + " " + student.getName() + "! The group "
 					+ name + " is already full.");
 		} else {
