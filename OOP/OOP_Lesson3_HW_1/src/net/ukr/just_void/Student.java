@@ -37,6 +37,17 @@ public class Student extends Human {
 	}
 
 	@Override
+	public boolean equals(Object arg0) {
+		if (arg0 instanceof Student) {
+			Student st = (Student) arg0;
+			return ((super.getName() == st.getName()) && (super.getSurname() == st.getSurname())
+					&& (super.getSex() == st.getSex()) && (super.getAge() == st.getAge()) && (year == st.getYear())
+					&& (averageGrade == st.getAverageGrade()));
+		}
+		return false;
+	}
+
+	@Override
 	public String toString() {
 		return super.toString() + System.lineSeparator() + "YEAR: " + year + System.lineSeparator() + "AVERAGE GRADE: "
 				+ averageGrade;
