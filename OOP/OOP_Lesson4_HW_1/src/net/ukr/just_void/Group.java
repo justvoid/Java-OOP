@@ -1,6 +1,5 @@
 package net.ukr.just_void;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -58,9 +57,9 @@ public class Group implements Voenkom {
 		}
 	}
 
-	private Student studentInfoManualInput() throws InputMismatchException, InvalidInputException {
+	private Student studentInfoManualInput() throws InvalidInputException {
 		Scanner sc = new Scanner(System.in);
-		String newName, newSurname, newSexString;
+		String newName, newSurname;
 		Sex newSex;
 		int newAge, newYear;
 		double newAverageGrade;
@@ -70,22 +69,15 @@ public class Group implements Voenkom {
 			newName = sc.nextLine();
 			System.out.println("Surname: ");
 			newSurname = sc.nextLine();
-			System.out.println("Sex (M/F): ");
-			newSexString = sc.nextLine();
-			if (newSexString.equalsIgnoreCase("m")) {
-				newSex = Sex.Male;
-			} else if (newSexString.equalsIgnoreCase("f")) {
-				newSex = Sex.Female;
-			} else {
-				throw new InvalidInputException("Sex must be entered either as M or F!");
-			}
+			System.out.println("Sex (Male/Female): ");
+			newSex = Sex.valueOf(sc.nextLine());
 			System.out.println("Age: ");
 			newAge = sc.nextInt();
 			System.out.println("Year: ");
 			newYear = sc.nextInt();
 			System.out.println("Average grade: ");
 			newAverageGrade = sc.nextDouble();
-		} catch (InputMismatchException e) {
+		} catch (InvalidInputException e) {
 			throw e;
 		} finally {
 			sc.close();
@@ -94,14 +86,12 @@ public class Group implements Voenkom {
 	}
 
 	public void addStudentManual()
-			throws InputMismatchException, GroupFullException, DuplicateStudentException, InvalidInputException {
+			throws GroupFullException, DuplicateStudentException, InvalidInputException {
 		Student newStudent;
 		try {
 			newStudent = studentInfoManualInput();
-		} catch (InputMismatchException e) {
-			System.out.println("Input mismatch! Student not added.");
-			throw e;
 		} catch (InvalidInputException e) {
+			System.out.println("Input mismatch! Student not added.");
 			throw e;
 		}
 		try {
