@@ -2,6 +2,7 @@ package net.ukr.just_void;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 
 public class Main {
 
@@ -9,6 +10,7 @@ public class Main {
 		Group gr = new Group("Gr401");
 
 		Student martinJ = new Student("Jake", "Martin", Sex.Male, 22, 4, 92.5);
+		Student martinJ1 = new Student("Jake", "Martin", Sex.Male, 22, 4, 92.5);
 		Student reedD = new Student("Derek", "Reed", Sex.Male, 22, 5, 96);
 		Student sarahP = new Student("Sarah", "Patrick", Sex.Female, 21, 4, 78.7);
 		Student GreenM = new Student("Mick", "Green", Sex.Male, 21, 4, 68.2);
@@ -20,8 +22,7 @@ public class Main {
 		Student mannyB = new Student("Manny", "Boyde", Sex.Female, 21, 4, 84.1);
 		Student hillB = new Student("Barbara", "Hill", Sex.Female, 21, 4, 99.6);
 		Student[] students = { martinJ, reedD, sarahP, GreenM, hillM, markV, derekP, annaM, jakeS, hillB };
-
-
+		
 		for (Student i : students) {
 			try {
 				gr.addStudent(i);
@@ -46,7 +47,9 @@ public class Main {
 			e.printStackTrace();
 		} catch (InvalidInputException e) {
 			e.printStackTrace();
-		}
+		} catch (InputMismatchException e) {
+			e.printStackTrace();
+		} 
 
 		System.out.println(gr.toString());
 		gr.groupSortCompare();

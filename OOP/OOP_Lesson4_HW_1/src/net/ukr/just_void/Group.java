@@ -1,6 +1,8 @@
 package net.ukr.just_void;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Group implements Voenkom {
@@ -56,9 +58,8 @@ public class Group implements Voenkom {
 		}
 	}
 
-	public void addStudentManual() throws GroupFullException, DuplicateStudentException, InvalidInputException {
+	private Student studentInfoManualInput() throws InputMismatchException, InvalidInputException {
 		Scanner sc = new Scanner(System.in);
-		Student newStudent;
 		String newName, newSurname, newSexString;
 		Sex newSex;
 		int newAge, newYear;
@@ -84,13 +85,25 @@ public class Group implements Voenkom {
 			newYear = sc.nextInt();
 			System.out.println("Average grade: ");
 			newAverageGrade = sc.nextDouble();
-		} catch (InvalidInputException e) {
-			System.out.println("Invalid input! Student not added.");
+		} catch (InputMismatchException e) {
 			throw e;
 		} finally {
 			sc.close();
 		}
-		newStudent = new Student(newName, newSurname, newSex, newAge, newYear, newAverageGrade);
+		return new Student(newName, newSurname, newSex, newAge, newYear, newAverageGrade);
+	}
+
+	public void addStudentManual()
+			throws InputMismatchException, GroupFullException, DuplicateStudentException, InvalidInputException {
+		Student newStudent;
+		try {
+			newStudent = studentInfoManualInput();
+		} catch (InputMismatchException e) {
+			System.out.println("Input mismatch! Student not added.");
+			throw e;
+		} catch (InvalidInputException e) {
+			throw e;
+		}
 		try {
 			addStudent(newStudent);
 		} catch (GroupFullException e) {

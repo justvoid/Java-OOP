@@ -1,5 +1,7 @@
 package net.ukr.just_void;
 
+import java.util.Objects;
+
 public class Student extends Human implements Comparable {
 	private int year;
 	private double averageGrade;
@@ -41,8 +43,8 @@ public class Student extends Human implements Comparable {
 		if (arg0 instanceof Student) {
 			Student st = (Student) arg0;
 			return ((super.getName() == st.getName()) && (super.getSurname() == st.getSurname())
-					&& (super.getSex() == st.getSex()) && (super.getAge() == st.getAge()) && (year == st.getYear())
-					&& (averageGrade == st.getAverageGrade()));
+					&& (super.getSex() == st.getSex()) && (super.getAge() == st.getAge()) && (this.year == st.getYear())
+					&& (this.averageGrade == st.getAverageGrade()));
 		}
 		return false;
 	}
@@ -54,8 +56,15 @@ public class Student extends Human implements Comparable {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(super.getName(), super.getSurname(), super.getSex(), super.getAge(), this.year,
+				this.averageGrade);
+	}
+
+	@Override
 	public int compareTo(Object o) {
 		Student oStudent = (Student) o;
 		return (this.getSurname() + this.getName()).compareToIgnoreCase(oStudent.getSurname() + oStudent.getName());
 	}
+
 }
