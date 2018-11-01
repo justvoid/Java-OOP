@@ -31,6 +31,13 @@ public class Main {
 		board.removeFromBoard(0);
 		board.removeFromBoard();
 		
+		Shape sh = new Square();
+		System.out.println(sh instanceof Square);
+		System.out.println(sh instanceof Shape);
+		System.out.println(sh.getClass() == Shape.class);
+//		System.out.println(sh instanceof Shape);
+		
+		
 		
 
 	}

@@ -3,7 +3,7 @@ package net.ukr.just_void;
 import java.util.Arrays;
 
 public class Circle extends Shape {
-	private Point[] apex = new Point[2];
+//	private Point[] apex = new Point[2];
 	private double r = 0;
 
 	public Circle() {
@@ -12,49 +12,41 @@ public class Circle extends Shape {
 
 	public Circle(Point[] apex) {
 		super("Круг");
-		this.apex = apex;
+		setApex(apex);
 		calculateR();
 	}
 
 	public Circle(String name, Point[] apex) {
 		super(name);
-		this.apex = apex;
+		setApex(apex);
 	}
 
 	public Circle(Point apex, int r) {
 		super("Круг");
-		this.apex[0] = apex;
 		this.r = r;
-		calculateApex1();
+		setApex(new Point[] {apex, new Point(apex.getX(),apex.getY() + r)});
 	}
 
 	public Circle(String name, Point apex, int r) {
 		super(name);
-		this.apex[0] = apex;
+		setApex(new Point[2]);
 		this.r = r;
-		calculateApex1();
+		setApex(new Point[] {apex, new Point(apex.getX(),apex.getY() + r)});
 	}
 
 	public Circle(String name, String color, Point[] apex) {
 		super(name, color);
-		this.apex = apex;
+		setApex(apex);
 		calculateR();
 	}
 
 	public Circle(String name, String color, Point apex, double r) {
 		super(name, color);
-		this.apex[0] = apex;
+		setApex(new Point[2]);
 		this.r = r;
-		calculateApex1();
+		setApex(new Point[] {apex, new Point(apex.getX(),apex.getY() + r)});
 	}
 
-	public Point[] getApex() {
-		return apex;
-	}
-
-	public void setApex(Point[] apex) {
-		this.apex = apex;
-	}
 
 	public double getR() {
 		return r;
@@ -75,16 +67,12 @@ public class Circle extends Shape {
 	}
 
 	private void calculateR() {
-		r = Math.sqrt(Math.pow(apex[0].getX() - apex[1].getX(), 2) + Math.pow(apex[0].getY() - apex[1].getY(), 2));
-	}
-
-	private void calculateApex1() {
-		apex[1] = new Point(apex[0].getX(), apex[0].getY() + r);
+		r = Math.sqrt(Math.pow(getApex()[0].getX() - getApex()[1].getX(), 2) + Math.pow(getApex()[0].getY() - getApex()[1].getY(), 2));
 	}
 
 	@Override
 	public String toString() {
-		return "Circle [" + super.toString() + ", apex=" + Arrays.toString(apex) + ", r=" + r + "]";
+		return "Circle [" + super.toString() + ", r=" + r + "]";
 	}
 
 }

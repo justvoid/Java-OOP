@@ -1,6 +1,8 @@
 package net.ukr.just_void;
 
-public class InvalidInputException extends Exception {
+import java.util.InputMismatchException;
+
+public class InvalidInputException extends InputMismatchException {
 
 	private static final long serialVersionUID = 5391607279462938164L;
 

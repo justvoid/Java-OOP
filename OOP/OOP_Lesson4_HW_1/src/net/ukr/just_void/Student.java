@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Student extends Human implements Comparable {
 	private int year;
 	private double averageGrade;
+	Group group = null;
 
 	public Student() {
 		super();
@@ -20,6 +21,14 @@ public class Student extends Human implements Comparable {
 		super(name, surname, sex, age);
 		this.year = year;
 		this.averageGrade = averageGrade;
+	}
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 
 	public int getYear() {
@@ -64,7 +73,25 @@ public class Student extends Human implements Comparable {
 	@Override
 	public int compareTo(Object o) {
 		Student oStudent = (Student) o;
-		return (this.getSurname() + this.getName()).compareToIgnoreCase(oStudent.getSurname() + oStudent.getName());
-	}
+		if (this.group == null) {
+			return (this.getSurname() + this.getName()).compareToIgnoreCase(oStudent.getSurname() + oStudent.getName());
+		} else {
 
+			switch (group.getSortField()) {
+			case 0: // Sort by Surname + Name
+				return this.group.getAscendingSortOrder() * (this.getSurname() + this.getName())
+						.compareToIgnoreCase(oStudent.getSurname() + oStudent.getName());
+			case 1: // Sort by Age
+				return this.group.getAscendingSortOrder() * (Integer.compare(this.getAge(), oStudent.getAge()));
+			case 2: // Sort by Average grade
+				return this.group.getAscendingSortOrder()
+						* (Double.compare(this.getAverageGrade(), oStudent.getAverageGrade()));
+			case 3: // Sort by Year
+				return this.group.getAscendingSortOrder() * (Integer.compare(this.getYear(), oStudent.getYear()));
+			default:
+				return this.group.getAscendingSortOrder() * (this.getSurname() + this.getName())
+						.compareToIgnoreCase(oStudent.getSurname() + oStudent.getName());
+			}
+		}
+	}
 }

@@ -37,6 +37,7 @@ public class Main {
 		gr.deleteStudent(7);
 		System.out.println("Now listing all students...");
 		System.out.println(gr.toString());
+		gr.changeSortParameters();
 		gr.groupSortCompare();
 		System.out.println(gr.toString());
 		try {
@@ -49,7 +50,9 @@ public class Main {
 			e.printStackTrace();
 		} catch (InputMismatchException e) {
 			e.printStackTrace();
-		} 
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}
 
 		System.out.println(gr.toString());
 		gr.groupSortCompare();

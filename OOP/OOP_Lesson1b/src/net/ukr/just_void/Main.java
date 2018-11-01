@@ -1,6 +1,6 @@
 package net.ukr.just_void;
 
-import net.ukr.just_void.IntList.IntIterator;
+//import net.ukr.just_void.IntList.IntIterator;
 
 public class Main {
 	
@@ -14,7 +14,7 @@ public class Main {
 		intList.add(3);
 		intList.add(18);
 		
-		IntIterator iter = intList.getIterator();
+		IntList.IntIterator iter = intList.new IntIterator();
 		
 		while (iter.hasNext()) {
 			System.out.print(iter.next() + " ");

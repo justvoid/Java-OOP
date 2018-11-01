@@ -8,6 +8,9 @@ public class Group implements Voenkom {
 	private String name;
 	private Student[] studentList = new Student[10];
 
+	private int ascendingSortOrder = 1;
+	private int sortField = 0;
+
 	public Group() {
 		super();
 	}
@@ -19,6 +22,14 @@ public class Group implements Voenkom {
 
 	public Student[] getStudentList() {
 		return studentList;
+	}
+
+	public int getAscendingSortOrder() {
+		return ascendingSortOrder;
+	}
+
+	public int getSortField() {
+		return sortField;
 	}
 
 	@Override
@@ -52,12 +63,13 @@ public class Group implements Voenkom {
 					+ name + " is already full.");
 		} else {
 			studentList[emptyElementIndex] = student;
+			student.setGroup(this);
 			System.out.println("Added student " + student.getSurname() + " " + student.getName() + " to group " + name
 					+ " to place " + emptyElementIndex);
 		}
 	}
 
-	private Student studentInfoManualInput() throws InvalidInputException {
+	private Student studentInfoManualInput() throws InvalidInputException, IllegalArgumentException {
 		Scanner sc = new Scanner(System.in);
 		String newName, newSurname;
 		Sex newSex;
@@ -79,19 +91,23 @@ public class Group implements Voenkom {
 			newAverageGrade = sc.nextDouble();
 		} catch (InvalidInputException e) {
 			throw e;
-		} finally {
+		}catch (IllegalArgumentException e) {
+			throw e;
+		}finally {
 			sc.close();
 		}
 		return new Student(newName, newSurname, newSex, newAge, newYear, newAverageGrade);
 	}
 
-	public void addStudentManual()
-			throws GroupFullException, DuplicateStudentException, InvalidInputException {
+	public void addStudentManual() throws GroupFullException, DuplicateStudentException, InvalidInputException, IllegalArgumentException {
 		Student newStudent;
 		try {
 			newStudent = studentInfoManualInput();
 		} catch (InvalidInputException e) {
 			System.out.println("Input mismatch! Student not added.");
+			throw e;
+		} catch (IllegalArgumentException e) {
+			System.out.println("Invalid mismatch! Student not added.");
 			throw e;
 		}
 		try {
@@ -111,6 +127,7 @@ public class Group implements Voenkom {
 			if ((studentList[i] != null) && (studentList[i].equals(student))) {
 				studentFound = true;
 				studentList[i] = null;
+				student.setGroup(null);
 				System.out.println("Removed student " + student.getSurname() + " " + student.getName() + " from group "
 						+ name + " place " + i);
 			}
@@ -126,6 +143,7 @@ public class Group implements Voenkom {
 		if (studentList[index] != null) {
 			System.out.println("Removed student " + studentList[index].getSurname() + " " + studentList[index].getName()
 					+ " from group " + name + " place " + index);
+			studentList[index].setGroup(null);
 			studentList[index] = null;
 		} else {
 			System.out.println("There is no student in the group " + name + " under the number " + index + " !");
@@ -173,6 +191,27 @@ public class Group implements Voenkom {
 			}
 		}
 		return n;
+	}
+
+	public void changeSortParameters() {
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("Sorty by:" + System.lineSeparator() + "[0] Full name" + System.lineSeparator()
+					+ "[1] Age" + System.lineSeparator() + "[2] Average grade" + System.lineSeparator() + "[3] Year");
+			sortField = sc.nextInt();
+			if ((sortField < 0)||(sortField>3)) {
+				throw new InvalidInputException("Out of range!");
+			}
+			System.out.println("Sort in ascending order? (true/false): ");
+			ascendingSortOrder = sc.nextBoolean()?1:-1;
+		} catch (InputMismatchException e) {
+			e.printStackTrace();
+			System.out.println("Invalid input! Sorting by default parameters");
+			sortField = 0;
+			ascendingSortOrder = 1;
+		} finally {
+			sc.close();
+		}
 	}
 
 	public void groupSortCompare() {
