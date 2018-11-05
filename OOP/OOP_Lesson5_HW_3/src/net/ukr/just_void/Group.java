@@ -255,6 +255,28 @@ public class Group implements Voenkom {
 		}
 		Arrays.sort(studentList, 0, getStudentNumber(), cs);
 	}
+	
+	// Implementation via Lambda with configurable search parameters + CheckNull
+//	public void groupSortWithParametersWithCheckNull() {
+//		Comparator<Student> cs;
+//		switch (sortField) {
+//		case 1: // Sort by Age
+//			cs = (s1, s2) -> CheckNull.checkNull(s1, s2)!=CheckNull.NOT_NULL?CheckNull.checkNull(s1, s2):ascendingSortOrder * (s1.getAge() - s2.getAge());
+//			break;
+//		case 2: // Sort by Average grade
+//			cs = (s1, s2) -> CheckNull.checkNull(s1, s2)!=CheckNull.NOT_NULL?CheckNull.checkNull(s1, s2):ascendingSortOrder * (Double.compare(s1.getAverageGrade(), s2.getAverageGrade()));
+//			break;
+//		case 3: // Sort by Year
+//			cs = (s1, s2) -> CheckNull.checkNull(s1, s2)!=CheckNull.NOT_NULL?CheckNull.checkNull(s1, s2):ascendingSortOrder * (s1.getYear() - s2.getYear());
+//			break;
+//		case 0: // Sort by Surname + Name; Default method! Falls through
+//		default:
+//			cs = (s1, s2) -> CheckNull.checkNull(s1, s2)!=CheckNull.NOT_NULL?CheckNull.checkNull(s1, s2):ascendingSortOrder
+//					* (s1.getSurname() + s1.getName()).compareToIgnoreCase(s2.getSurname() + s2.getName());
+//			break;
+//		}
+//		Arrays.sort(studentList, 0, getStudentNumber(), cs);
+//	}
 
 	public int[] findStudent(String surname) {
 		int[] index = new int[studentList.length];
