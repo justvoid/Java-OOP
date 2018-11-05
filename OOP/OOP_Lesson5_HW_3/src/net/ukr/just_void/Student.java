@@ -2,7 +2,7 @@ package net.ukr.just_void;
 
 import java.util.Objects;
 
-public class Student extends Human implements Comparable {
+public class Student extends Human {
 	private int year;
 	private double averageGrade;
 	Group group = null;
@@ -64,34 +64,34 @@ public class Student extends Human implements Comparable {
 				+ averageGrade;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(super.getName(), super.getSurname(), super.getSex(), super.getAge(), this.year,
-				this.averageGrade);
-	}
-
-	@Override
-	public int compareTo(Object o) {
-		Student oStudent = (Student) o;
-		if (this.group == null) {
-			return (this.getSurname() + this.getName()).compareToIgnoreCase(oStudent.getSurname() + oStudent.getName());
-		} else {
-
-			switch (group.getSortField()) {
-			case 0: // Sort by Surname + Name
-				return this.group.getAscendingSortOrder() * (this.getSurname() + this.getName())
-						.compareToIgnoreCase(oStudent.getSurname() + oStudent.getName());
-			case 1: // Sort by Age
-				return this.group.getAscendingSortOrder() * (Integer.compare(this.getAge(), oStudent.getAge()));
-			case 2: // Sort by Average grade
-				return this.group.getAscendingSortOrder()
-						* (Double.compare(this.getAverageGrade(), oStudent.getAverageGrade()));
-			case 3: // Sort by Year
-				return this.group.getAscendingSortOrder() * (Integer.compare(this.getYear(), oStudent.getYear()));
-			default:
-				return this.group.getAscendingSortOrder() * (this.getSurname() + this.getName())
-						.compareToIgnoreCase(oStudent.getSurname() + oStudent.getName());
-			}
-		}
-	}
+//	@Override
+//	public int hashCode() {
+//		return Objects.hash(super.getName(), super.getSurname(), super.getSex(), super.getAge(), this.year,
+//				this.averageGrade);
+//	}
+//
+//	@Override
+//	public int compareTo(Object o) {
+//		Student oStudent = (Student) o;
+//		if (this.group == null) {
+//			return (this.getSurname() + this.getName()).compareToIgnoreCase(oStudent.getSurname() + oStudent.getName());
+//		} else {
+//
+//			switch (group.getSortField()) {
+//			case 0: // Sort by Surname + Name
+//				return this.group.getAscendingSortOrder() * (this.getSurname() + this.getName())
+//						.compareToIgnoreCase(oStudent.getSurname() + oStudent.getName());
+//			case 1: // Sort by Age
+//				return this.group.getAscendingSortOrder() * (Integer.compare(this.getAge(), oStudent.getAge()));
+//			case 2: // Sort by Average grade
+//				return this.group.getAscendingSortOrder()
+//						* (Double.compare(this.getAverageGrade(), oStudent.getAverageGrade()));
+//			case 3: // Sort by Year
+//				return this.group.getAscendingSortOrder() * (Integer.compare(this.getYear(), oStudent.getYear()));
+//			default:
+//				return this.group.getAscendingSortOrder() * (this.getSurname() + this.getName())
+//						.compareToIgnoreCase(oStudent.getSurname() + oStudent.getName());
+//			}
+//		}
+//	}
 }

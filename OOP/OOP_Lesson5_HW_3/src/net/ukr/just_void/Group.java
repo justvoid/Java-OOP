@@ -176,25 +176,6 @@ public class Group implements Voenkom {
 		}
 	}
 
-	public void groupSort() {
-		groupSortNull();
-		boolean madeChanges;
-		do {
-			madeChanges = false;
-			for (int i = 1; i < studentList.length; i++) {
-				if ((studentList[i] != null) && (studentList[i - 1] != null)) {
-					if ((studentList[i - 1].getSurname() + studentList[i - 1].getName())
-							.compareTo(studentList[i].getSurname() + studentList[i].getName()) > 0) {
-						Student buffer = studentList[i];
-						studentList[i] = studentList[i - 1];
-						studentList[i - 1] = buffer;
-						madeChanges = true;
-					}
-				}
-			}
-		} while (madeChanges);
-	}
-
 	private int getStudentNumber() {
 		int n = 0;
 		for (int i = 0; i < studentList.length; i++) {
@@ -204,6 +185,32 @@ public class Group implements Voenkom {
 		}
 		return n;
 	}
+
+	// My sort implementation
+//	public void groupSort() {
+//		groupSortNull();
+//		boolean madeChanges;
+//		do {
+//			madeChanges = false;
+//			for (int i = 1; i < studentList.length; i++) {
+//				if ((studentList[i] != null) && (studentList[i - 1] != null)) {
+//					if ((studentList[i - 1].getSurname() + studentList[i - 1].getName())
+//							.compareTo(studentList[i].getSurname() + studentList[i].getName()) > 0) {
+//						Student buffer = studentList[i];
+//						studentList[i] = studentList[i - 1];
+//						studentList[i - 1] = buffer;
+//						madeChanges = true;
+//					}
+//				}
+//			}
+//		} while (madeChanges);
+//	}
+
+	// Implementation via Comparable
+//	public void groupSortCompare() {
+//		groupSortNull();
+//		Arrays.sort(studentList, 0, getStudentNumber());
+//	}
 
 	public void changeSortParameters() {
 		Scanner sc = new Scanner(System.in);
@@ -226,27 +233,27 @@ public class Group implements Voenkom {
 		}
 	}
 
-	public void groupSortCompare() {
+	// Implementation via Lambda with configurable search parameters
+	public void groupSortWithParameters() {
 		groupSortNull();
-		Arrays.sort(studentList, 0, getStudentNumber());
-	}
-
-	public void groupSortCompareAnonymous() {
-		groupSortNull();
-		Arrays.sort(studentList, 0, getStudentNumber(), new Comparator<Student>() {
-
-			@Override
-			public int compare(Student o1, Student o2) {
-				if (o1.getAverageGrade() > o2.getAverageGrade()) {
-					return 1;
-				}
-				if (o1.getAverageGrade() < o2.getAverageGrade()) {
-					return -1;
-				}
-				return 0;
-			}
-
-		});
+		Comparator<Student> cs;
+		switch (sortField) {
+		case 1: // Sort by Age
+			cs = (s1, s2) -> ascendingSortOrder * (s1.getAge() - s2.getAge());
+			break;
+		case 2: // Sort by Average grade
+			cs = (s1, s2) -> ascendingSortOrder * (Double.compare(s1.getAverageGrade(), s2.getAverageGrade()));
+			break;
+		case 3: // Sort by Year
+			cs = (s1, s2) -> ascendingSortOrder * (s1.getYear() - s2.getYear());
+			break;
+		case 0: // Sort by Surname + Name; Default method! Falls through
+		default:
+			cs = (s1, s2) -> ascendingSortOrder
+					* (s1.getSurname() + s1.getName()).compareToIgnoreCase(s2.getSurname() + s2.getName());
+			break;
+		}
+		Arrays.sort(studentList, 0, getStudentNumber(), cs);
 	}
 
 	public int[] findStudent(String surname) {
