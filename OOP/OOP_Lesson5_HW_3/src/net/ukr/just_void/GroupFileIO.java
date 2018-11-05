@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class GroupIOInterface implements GroupDAO {
+public class GroupFileIO implements GroupDAO {
 
 	@Override
 	public void saveGroup(Group g) throws IOException {

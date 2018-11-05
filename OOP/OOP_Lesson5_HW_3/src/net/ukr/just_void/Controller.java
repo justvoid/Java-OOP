@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class Controller {
-	private GroupIOInterface fileReadWriteInterface = new GroupIOInterface();
+	private GroupFileIO fileReadWriteIO = new GroupFileIO();
 	private Group[] groupList = new Group[10];
 	private int numberOfGroups = 0;
 
@@ -47,30 +47,46 @@ public class Controller {
 	}
 
 	public void groupToFile(Group group) {
+		try {
+			writeGroup(group, fileReadWriteIO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void writeGroup(Group group, GroupDAO gdao) throws IOException {
 		if (!groupExists(group)) {
 			System.out.println(
 					"Group with this name does not exist in Controller! Please add group first to unlock full functionality");
 		} else {
 			try {
-				fileReadWriteInterface.saveGroup(group);
+				gdao.saveGroup(group);
 			} catch (IOException e) {
-				e.printStackTrace();
+				throw e;
 			}
 		}
 	}
 
 	public Group groupFromFile(String name) {
+		try {
+			 return readGroup(name, fileReadWriteIO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	private Group readGroup(String name, GroupDAO gdao) throws IOException {
 		if (groupExists(name)) {
 			System.out.println("This group already exists!");
 			return null;
 		} else
 			try {
-				addGroup(fileReadWriteInterface.loadGroup(name));
+				addGroup(gdao.loadGroup(name));
 				return groupList[numberOfGroups - 1];
 			} catch (IOException e) {
-				e.printStackTrace();
+				throw e;
 			}
-		return null;
 	}
+	
 
 }

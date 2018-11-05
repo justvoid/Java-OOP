@@ -66,9 +66,9 @@ public class Main {
 //		System.out.println(Arrays.toString(comissar.conscript(gr)));
 		
 
-//		ctr.groupToFile(gr);
-		Group gr1 = ctr.groupFromFile("Gr501");
-		System.out.println(gr1.toString());
+		ctr.groupToFile(gr);
+//		Group gr1 = ctr.groupFromFile("Gr501");
+//		System.out.println(gr1.toString());
 		
 	}
 
