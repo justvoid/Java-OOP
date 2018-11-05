@@ -1,6 +1,7 @@
 package net.ukr.just_void;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -91,15 +92,16 @@ public class Group implements Voenkom {
 			newAverageGrade = sc.nextDouble();
 		} catch (InvalidInputException e) {
 			throw e;
-		}catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			throw e;
-		}finally {
+		} finally {
 			sc.close();
 		}
 		return new Student(newName, newSurname, newSex, newAge, newYear, newAverageGrade);
 	}
 
-	public void addStudentManual() throws GroupFullException, DuplicateStudentException, InvalidInputException, IllegalArgumentException {
+	public void addStudentManual()
+			throws GroupFullException, DuplicateStudentException, InvalidInputException, IllegalArgumentException {
 		Student newStudent;
 		try {
 			newStudent = studentInfoManualInput();
@@ -199,11 +201,11 @@ public class Group implements Voenkom {
 			System.out.println("Sorty by:" + System.lineSeparator() + "[0] Full name" + System.lineSeparator()
 					+ "[1] Age" + System.lineSeparator() + "[2] Average grade" + System.lineSeparator() + "[3] Year");
 			sortField = sc.nextInt();
-			if ((sortField < 0)||(sortField>3)) {
+			if ((sortField < 0) || (sortField > 3)) {
 				throw new InvalidInputException("Out of range!");
 			}
 			System.out.println("Sort in ascending order? (true/false): ");
-			ascendingSortOrder = sc.nextBoolean()?1:-1;
+			ascendingSortOrder = sc.nextBoolean() ? 1 : -1;
 		} catch (InputMismatchException e) {
 			e.printStackTrace();
 			System.out.println("Invalid input! Sorting by default parameters");
@@ -217,6 +219,24 @@ public class Group implements Voenkom {
 	public void groupSortCompare() {
 		groupSortNull();
 		Arrays.sort(studentList, 0, getStudentNumber());
+	}
+
+	public void groupSortCompareAnonymous() {
+		groupSortNull();
+		Arrays.sort(studentList, 0, getStudentNumber(), new Comparator<Student>() {
+
+			@Override
+			public int compare(Student o1, Student o2) {
+				if (o1.getAverageGrade() > o2.getAverageGrade()) {
+					return 1;
+				}
+				if (o1.getAverageGrade() < o2.getAverageGrade()) {
+					return -1;
+				}
+				return 0;
+			}
+
+		});
 	}
 
 	public int[] findStudent(String surname) {
