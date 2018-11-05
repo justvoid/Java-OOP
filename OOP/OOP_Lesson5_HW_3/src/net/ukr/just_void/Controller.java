@@ -13,10 +13,6 @@ public class Controller {
 		// TODO Auto-generated constructor stub
 	}
 
-	public GroupIOInterface getFileReadWriteInterface() {
-		return fileReadWriteInterface;
-	}
-
 	public void addGroup(Group gr) {
 		if (groupExists(gr)) {
 			System.out.println("Group name must be unique! Group not added");
@@ -50,26 +46,26 @@ public class Controller {
 		return false;
 	}
 
-	public void groupToFile(Group group, GroupIOInterface groupIOInterface) {
+	public void groupToFile(Group group) {
 		if (!groupExists(group)) {
 			System.out.println(
 					"Group with this name does not exist in Controller! Please add group first to unlock full functionality");
 		} else {
 			try {
-				groupIOInterface.saveGroup(group);
+				fileReadWriteInterface.saveGroup(group);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	public Group groupFromFile(String name, GroupIOInterface groupIOInterface) {
+	public Group groupFromFile(String name) {
 		if (groupExists(name)) {
 			System.out.println("This group already exists!");
 			return null;
 		} else
 			try {
-				addGroup(groupIOInterface.loadGroup(name));
+				addGroup(fileReadWriteInterface.loadGroup(name));
 				return groupList[numberOfGroups - 1];
 			} catch (IOException e) {
 				e.printStackTrace();
