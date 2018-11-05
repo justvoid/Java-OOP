@@ -46,11 +46,11 @@ public class Controller {
 		return false;
 	}
 
-	public void groupToFile(Group group) {
+	public void groupToFile(Group group) throws IOException {
 		try {
 			writeGroup(group, fileReadWriteIO);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -67,14 +67,14 @@ public class Controller {
 		}
 	}
 
-	public Group groupFromFile(String name) {
+	public Group groupFromFile(String name) throws IOException {
 		try {
-			 return readGroup(name, fileReadWriteIO);
+			return readGroup(name, fileReadWriteIO);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw e;
 		}
-		return null;
 	}
+
 	private Group readGroup(String name, GroupDAO gdao) throws IOException {
 		if (groupExists(name)) {
 			System.out.println("This group already exists!");
@@ -87,6 +87,5 @@ public class Controller {
 				throw e;
 			}
 	}
-	
 
 }

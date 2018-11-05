@@ -65,10 +65,13 @@ public class Main {
 //		Comissar comissar = new Comissar();
 //		System.out.println(Arrays.toString(comissar.conscript(gr)));
 		
-
+		try {
 		ctr.groupToFile(gr);
 //		Group gr1 = ctr.groupFromFile("Gr501");
 //		System.out.println(gr1.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
