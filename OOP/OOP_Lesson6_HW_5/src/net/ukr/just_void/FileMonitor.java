@@ -14,11 +14,41 @@ public class FileMonitor implements Runnable {
 		return folder;
 	}
 
+	private void compareFileArrays(File[] arr1, File[] arr2, String message) {
+		boolean fileExists;
+		for (int i = 0; i < arr1.length; i += 1) {
+			fileExists = false;
+			for (int j = 0; j < arr2.length; j += 1) {
+				if (arr1[i].getName().equals(arr2[j].getName())) {
+					fileExists = true;
+					continue;
+				}
+			}
+			if (!fileExists) {
+				System.out.println("Файл " + arr1[i].getName() + " был " + message + "!");
+			}
+		}
+	}
+	private void compareFileArrays2(File[] arr1, File[] arr2, String message) {
+		boolean fileExists;
+		for (File file1 : arr1) {
+			fileExists = false;
+			for (File file2 : arr2) {
+				if (file1.getName().equals(file2.getName())) {
+					fileExists = true;
+					continue;
+				}
+			}
+			if (!fileExists) {
+				System.out.println("Файл " + file1.getName() + " был " + message + "!");
+			}
+		}
+	}
+	
 	private void checkFolder() {
 		Thread th = Thread.currentThread();
 		File[] files;
 		File[] filesNew;
-		boolean fileExists = false;
 
 		while (!th.isInterrupted()) {
 			files = folder.listFiles();
@@ -28,30 +58,8 @@ public class FileMonitor implements Runnable {
 				e.printStackTrace();
 			}
 			filesNew = folder.listFiles();
-			for (int i = 0; i < files.length; i += 1) {
-				fileExists = false;
-				for (int j = 0; j < filesNew.length; j += 1) {
-					if (files[i].getName().equals(filesNew[j].getName())) {
-						fileExists = true;
-						continue;
-					}
-				}
-				if (!fileExists) {
-					System.out.println("Файл " + files[i].getName() + " был удален!");
-				}
-			}
-			for (int i = 0; i < filesNew.length; i += 1) {
-				fileExists = false;
-				for (int j = 0; j < files.length; j += 1) {
-					if (filesNew[i].getName().equals(files[j].getName())) {
-						fileExists = true;
-						continue;
-					}
-				}
-				if (!fileExists) {
-					System.out.println("Файл " + filesNew[i].getName() + " был добавлен!");
-				}
-			}			
+			compareFileArrays2(files, filesNew, "удален");
+			compareFileArrays2(filesNew, files, "добавлен");
 		}
 	}
 
