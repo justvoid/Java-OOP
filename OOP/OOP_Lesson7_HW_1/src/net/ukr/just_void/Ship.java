@@ -1,7 +1,7 @@
 package net.ukr.just_void;
 
 public class Ship implements Runnable{
-	String name;
+	private String name;
 	private int n;
 
 	public Ship(String name, int n) {

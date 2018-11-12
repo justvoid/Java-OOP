@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-	public static ExecutorService exs = Executors.newFixedThreadPool(4);
+	private static ExecutorService exs = Executors.newFixedThreadPool(4);
 
 	public static void main(String[] args) {
 		String address = ".";
