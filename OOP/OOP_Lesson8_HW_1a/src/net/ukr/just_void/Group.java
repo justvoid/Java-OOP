@@ -59,7 +59,7 @@ public class Group implements Voenkom, Serializable{
 		return sb.toString();
 	}
 
-	public void addStudent(Student student) throws GroupFullException, DuplicateStudentException {
+	public void addStudent(Student student) throws ContainerFullException, DuplicateStudentException {
 		int emptyElementIndex = -1;
 		for (int i = 0; i < studentList.length; i++) {
 			if (studentList[i] == null) {
@@ -71,7 +71,7 @@ public class Group implements Voenkom, Serializable{
 
 		}
 		if (emptyElementIndex == -1) {
-			throw new GroupFullException("Can't add " + student.getSurname() + " " + student.getName() + "! The group "
+			throw new ContainerFullException("Can't add " + student.getSurname() + " " + student.getName() + "! The group "
 					+ name + " is already full.");
 		} else {
 			studentList[emptyElementIndex] = student;
@@ -112,7 +112,7 @@ public class Group implements Voenkom, Serializable{
 	}
 
 	public void addStudentManual()
-			throws GroupFullException, DuplicateStudentException, InvalidInputException, IllegalArgumentException {
+			throws ContainerFullException, DuplicateStudentException, InvalidInputException, IllegalArgumentException {
 		Student newStudent;
 		try {
 			newStudent = studentInfoManualInput();
@@ -125,7 +125,7 @@ public class Group implements Voenkom, Serializable{
 		}
 		try {
 			addStudent(newStudent);
-		} catch (GroupFullException e) {
+		} catch (ContainerFullException e) {
 			System.out.println("The group is full! Student not added.");
 			throw e;
 		} catch (DuplicateStudentException e) {

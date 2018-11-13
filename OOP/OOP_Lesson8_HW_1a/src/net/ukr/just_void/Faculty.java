@@ -43,7 +43,7 @@ public class Faculty {
 		return sb.toString();
 	}
 
-	public void addGroup(Group group) {
+	public void addGroup(Group group) throws ContainerFullException {
 		for (int i = 0; i < groupList.length; i++) {
 			if (groupList[i] == null) {
 				groupList[i] = group;
@@ -51,14 +51,19 @@ public class Faculty {
 				break;
 			}
 			if (i == groupList.length - 1) {
-				System.out.println("The faculty " + name + " is full! Group not added.");
+				throw new ContainerFullException(
+						"Can't add " + group.getName() + "! Faculty " + name + " is already full.");
 			}
 		}
 	}
 
 	public void groupToFile(int i) {
-		if (groupList[i] == null) {
-			System.out.println("Invalid group index!");
+		try {
+			if (groupList[i] == null) {
+				throw new InvalidInputException("Invalid group index!");
+			}
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
 		}
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(groupList[i].getName() + ".txt"))) {
 			oos.writeObject(groupList[i]);
@@ -70,7 +75,7 @@ public class Faculty {
 	public void groupFromFile(String address) {
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(address + ".txt"))) {
 			this.addGroup((Group) ois.readObject());
-		} catch (IOException | ClassNotFoundException e) {
+		} catch (ContainerFullException | IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

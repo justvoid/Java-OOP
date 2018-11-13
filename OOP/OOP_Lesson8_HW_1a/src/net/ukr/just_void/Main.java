@@ -1,8 +1,6 @@
 package net.ukr.just_void;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.InputMismatchException;
 
 public class Main {
 
@@ -13,7 +11,7 @@ public class Main {
 //		gr.deleteStudent(7);
 //		System.out.println("Now listing all students...");
 //		System.out.println(gr.toString());
-		
+
 //		checkSorting(gr); // Check Sorting via Lambda with configurable search parameters
 
 //		checkManualInput(gr);	// Check Manual Input
@@ -24,9 +22,11 @@ public class Main {
 //		checkManualToFile(gr); // Check Manual Group to/from File via Controller and Group DAO
 
 		Faculty fc = new Faculty("IT Faculty");
-//		fc.addGroup(gr);		
+
+//		fc.addGroup(gr);
 //		fc.groupToFile(0);
 		fc.groupFromFile("Gr401");
+
 		System.out.println(fc.getGroupList()[0]);
 		System.out.println(fc.getGroupList()[0]);
 		System.out.println(fc.getGroupList()[0].getStudentList()[0].getSex());
@@ -51,7 +51,7 @@ public class Main {
 		for (Student i : students) {
 			try {
 				group.addStudent(i);
-			} catch (GroupFullException e) {
+			} catch (ContainerFullException e) {
 				e.printStackTrace();
 			} catch (DuplicateStudentException e) {
 				e.printStackTrace();
@@ -69,12 +69,13 @@ public class Main {
 	public static void checkManualInput(Group group) {
 		try {
 			group.addStudentManual();
-		} catch (GroupFullException | DuplicateStudentException | InvalidInputException | IllegalArgumentException e) {
+		} catch (ContainerFullException | DuplicateStudentException | InvalidInputException
+				| IllegalArgumentException e) {
 			e.printStackTrace();
 		}
 		System.out.println(group.toString());
 	}
-	
+
 	public static void checkManualToFile(Group group) {
 		try {
 			Controller ctr = new Controller();
@@ -84,7 +85,7 @@ public class Main {
 			System.out.println(gr1.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
+		}
 	}
 
 }
