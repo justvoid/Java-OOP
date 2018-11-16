@@ -3,7 +3,7 @@ package net.ukr.just_void;
 import java.util.ArrayDeque;
 
 public class ColaQueue {
-	ArrayDeque<String> que;
+	private ArrayDeque<String> que;
 
 	public ColaQueue() {
 		super();
