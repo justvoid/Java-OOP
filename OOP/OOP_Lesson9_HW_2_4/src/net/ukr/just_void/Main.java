@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			System.out.println(findLargestNumber("a.txt"));
-			System.out.println(findLargestNumberDouble("b.txt"));	
+			System.out.println(findLargestNumberDouble("a.txt"));	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
